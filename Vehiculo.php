@@ -6,20 +6,37 @@ class Vehiculo{
         public $peso;
         public $tamanio; 
 
-    // Contructores sin parametro
-    public function __construct(){
-       $this->nombre="";
-       $this->color="";
-       $this->peso="";
-       $this->tamanio=""; 
+    // Constructor que verificará si lleva parámetros o no y en base a eso redireccionará 
+    public function __construct() {
+        //obtengo un array con los parámetros enviados a la función
+        $params = func_get_args();
+        //saco el número de parámetros que estoy recibiendo
+        $num_params = func_num_args();
+        //atendiendo al siguiente modelo __construct0() __construct4()...
+        $funcion_constructor ='__construct'.$num_params;
+        //compruebo si hay un constructor con ese número de parámetros
+        if (method_exists($this,$funcion_constructor)) {
+            //si esa función existe, la invoco, reenviando los parámetros que recibí en el constructor
+            call_user_func_array(array($this,$funcion_constructor),$params);
+        }
     }
-    // Contructores con parametros
-    public function Vehiculo($nombre,$color,$peso,$tamanio){
-        $this->nombre=$nombre;
-        $this->color=$color;
-        $this->peso=$peso;
-        $this->tamanio=$tamanio; 
-     }
+
+    // Contructor sin parametro
+    private function __construct0() {
+        $this->setnombre("");
+        $this->setcolor("");
+        $this->setpeso(0);
+        $this->settamanio(0);         
+    }
+
+    // Contructor con parametros
+    private function __construct4($nombre,$color,$peso,$tamanio) {
+        $this->setnombre($nombre);
+        $this->setcolor($color);
+        $this->setpeso($peso);
+        $this->settamanio($tamanio);           
+    }
+    
     //Metodos set
     public function setnombre($nombre){
         $this->nombre=$nombre;
