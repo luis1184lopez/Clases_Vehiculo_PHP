@@ -123,7 +123,10 @@ class Avion extends Vehiculo {
 
 //Crear un objeto de la clase Vehiculo que envíe un mensaje si el vehiculo es de transporte privado o publico.
 $vehiculo = new Vehiculo();
-//Crear un objeto de la clase Avión
-$avion = new Avion();
+echo "El Vehículo es de ".$vehiculo->getTipoTransporte(3)." <br><br>";
 
+//Crear un objeto de la clase Avión
+$avion = new Avion("UNITED", "Rojo", 235, 38);
+$avion->setTurbinas(4);
+echo "El vehículo de nombre: ".$avion->getnombre()." tiene ".$avion->getTurbinas()." turbinas y el tipo de vehículo es: ".$avion->getTipoVehiculo(253).". <br><br>";
 ?>
