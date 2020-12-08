@@ -106,8 +106,21 @@ class Vehiculo{
 
 // Crear una clase Avion derivada de la clase Vehiculo.
 class Avion extends Vehiculo {
+    public $turbinas;
 
+    public function setTurbinas($cantidad){
+        if($cantidad<0){
+            echo "Valor incorrecto, no puede ser un valor negativo <br>";
+        }else{
+            $this->turbinas=$cantidad;
+        }
+    }
+
+    public function getTurbinas(){
+        return $this->turbinas;
+    }
 }
+
 //Crear un objeto de la clase Vehiculo que envíe un mensaje si el vehiculo es de transporte privado o publico.
 $vehiculo = new Vehiculo();
 //Crear un objeto de la clase Avión
