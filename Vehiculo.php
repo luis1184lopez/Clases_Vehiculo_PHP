@@ -71,16 +71,40 @@ class Vehiculo{
     public function gettamanio(){
        return $this->tamanio;
     }
+    
     //Sobrecarga de métodos
-    // Metodo validar si transporte es publico o privado
-    public function validarTransporte($pasajeros){
-        if ($pasajeros <= 5){
-           echo "Transporte privado";
-        }else
-           echo "Transporte publico";
+    //Funcion __call que recoge el número de pasajeros del vehículo
+    function __call($metodo, $argumentos) {
+
+        // Metodo validar si transporte es publico o privado
+        if ($metodo == 'getTipoTransporte') {
+            if ($argumentos[0]<=5) {
+                return "Transporte privado";
+            }
+            else {
+                return "Transporte público";
+            }                                   
+        }
+
+        // Metodo validar si el tipo de vehículo es autobus, avión o barco
+        if ($metodo == 'getTipoVehiculo') {            
+            if ($argumentos[0]<100) {
+                return "autobus";
+            }
+            elseif($argumentos[0]>=100 && $argumentos[0]<=555) {
+                return "avión";
+            }
+            elseif($argumentos[0]>555 && $argumentos[0]<=30000) {
+                return "barco";
+            }
+            else {
+                return "otro";
+            }                                   
+        }
     }
-    }
-    // Crear una clase Avion derivada de la clase Vehiculo.
+}
+
+// Crear una clase Avion derivada de la clase Vehiculo.
 class Avion extends Vehiculo {
 
 }
